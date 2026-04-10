@@ -84,5 +84,5 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
-**/build/main.pdf
+*.pdf
 .gitignore
