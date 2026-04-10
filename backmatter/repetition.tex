@@ -2,5 +2,37 @@
 
 \begin{document}
 
+\paragraph*{Problem 13}
+Use Newton divided differences to interpolate the data
+\[
+    x:= \{10, 11, 12\}, \quad     f(x):=\{2.3, 2.4, 2.5\}
+\]
+
+We get $p \in \mathbb{P}_2$ s.t.
+
+\begin{align*}
+    f[x_0] &= f[10] = 2.3\\
+    f[x_0,x_1] &= \dfrac{f[x_1] - f[x_0]}{x_1 - x_0} = \dfrac{2.4-2.3}{11-10} = \frac{1}{10}\\
+    f[x_1,x_2] &= \dfrac{f[x_2] - f[x_1]}{x_2 - x_1} = \dfrac{2.5-2.4}{12-11} = \frac{1}{10}\\
+    f[x_0,x_1,x_2] &= \dfrac{f[x_1,x_2] - f[x_0,x_1]}{x_2 - x_0} = \dfrac{\frac{1}{10} - \frac{1}{10}}{12-10} = 0\\
+\end{align*}
+Thus, the interpolating polynomial is
+\begin{align*}
+    p(x) &= f[x_0] + f[x_0,x_1](x - x_0) + f[x_0,x_1,x_2](x - x_0)(x - x_1)\\
+    &= 2.3 + \frac{1}{10}(x - 10)\\
+\end{align*}
+Assume the data is obtained evaluating a function f which is at least three
+times differentiable with continuous derivatives on $[10, 12]$. Find an error
+bound for error committed in $x = 11.1$ using the error formula of the
+interpolation polynomial. Assume M to be the maximum of the absolute
+value of the third derivative of f on $[10, 12]$.
+\[
+    f(x) - p(x) = \frac{f^{(3)}(\xi)}{3!}(x - x_0)(x - x_1)(x - x_2), \quad \xi \in [10, 12]
+\]
+Thus, the error at $x = 11.1$ is bounded by
+\begin{align*}
+    |f(11.1) - p(11.1)| &\leq \frac{M}{3!}|(11.1 - 10)(11.1 - 11)(11.1 - 12)|\\
+    &= \frac{M}{6} \cdot 1.1 \cdot 0.1 \cdot 0.9 = 0.0165M
+\end{align*}
 
 \end{document}
